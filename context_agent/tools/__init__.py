@@ -7,10 +7,12 @@ from .ontology_vector_lookup import (
     init_lookup,
     search_ontology,
 )
+from .process_documents import process
 
 __all__ = [
     "OntologyVectorLookup",
     "init_lookup",
     "search_ontology",
+    "process",
 ]
 
