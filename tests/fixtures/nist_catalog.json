@@ -1,0 +1,14 @@
+{
+  "catalog": {
+    "controls": [
+      {
+        "id": "ac-1",
+        "title": "Access Control Policy and Procedures"
+      },
+      {
+        "id": "ac-2",
+        "title": "Account Management"
+      }
+    ]
+  }
+}

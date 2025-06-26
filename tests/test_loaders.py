@@ -31,3 +31,8 @@ def test_load_document_xml():
     path = os.path.join(FIXTURES, 'sample.xml')
     docs = load_document(path)
     assert isinstance(docs, list) and docs
+
+def test_load_document_nist_catalog():
+    path = os.path.join(FIXTURES, 'nist_catalog.json')
+    docs = load_document(path)
+    assert isinstance(docs, list) and docs
