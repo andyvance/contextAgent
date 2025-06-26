@@ -7,17 +7,17 @@ from pathlib import Path
 from typing import List
 import xml.etree.ElementTree as ET
 
-import fitz  # PyMuPDF
-import pandas as pd
 
 
 def load_document(path: str) -> List[str]:
     """Load a document from ``path`` and return text chunks."""
     ext = Path(path).suffix.lower()
     if ext == ".pdf":
+        import fitz  # PyMuPDF
         doc = fitz.open(path)
         return [page.get_text() for page in doc]
     if ext in {".xlsx", ".xls"}:
+        import pandas as pd  # optional dependency
         df = pd.read_excel(path, header=None)
         return df.fillna("").astype(str).agg(" ".join, axis=1).tolist()
     if ext == ".json":

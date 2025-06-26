@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from rdflib import Graph, RDFS
 from typing import Dict, Iterable
 
 
 def load_ontology(path: str) -> Dict[str, str]:
     """Parse a TTL ontology file and return a label to URI lookup."""
+    from rdflib import Graph, RDFS  # local import for optional dependency
     graph = Graph()
     graph.parse(path, format="ttl")
     lookup: Dict[str, str] = {}

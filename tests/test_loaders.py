@@ -1,4 +1,8 @@
 import os
+import pytest
+
+pytest.importorskip("rdflib")
+
 from context_agent.loaders.ontology_loader import load_ontology, load_ontologies
 from context_agent.loaders.document_loader import load_document
 
