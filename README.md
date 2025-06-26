@@ -18,3 +18,11 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 pip install rdflib spacy pandas PyMuPDF "langchain>=0.1"
 ```
+
+### Running Tests
+
+After installing dependencies, run the unit tests with `pytest`:
+
+```bash
+pytest -q
+```
