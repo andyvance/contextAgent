@@ -35,3 +35,14 @@ Run a semantic search over an ontology file:
 ```bash
 python -m context_agent.tools.ontology_vector_lookup path/to/ontology.ttl "your query" -n 5
 ```
+
+### Simple Ingestion Example
+
+Process a set of documents using one or more ontologies and write the results to a TTL file:
+
+```bash
+python -m context_agent.tools.process_documents \
+    -o path/to/onto1.ttl -o path/to/onto2.ttl \
+    -d docs/report.pdf -d controls.xlsx \
+    output.ttl
+```
