@@ -8,6 +8,7 @@ This repository implements an ontology-aware context ingestion pipeline for cybe
 - **NER matcher** – identifies concepts in documents using `spacy` and ontology mappings.
 - **LangChain agent** – orchestrates ontology lookups, document queries, and reasoning.
 - **Output writers** – serialize results to desired formats for analysis or storage.
+- **Ontology vector lookup** – performs semantic similarity search over ontology labels using spaCy vectors.
 
 ## Setup
 1. Install Python 3.11.
@@ -25,4 +26,12 @@ After installing dependencies, run the unit tests with `pytest`:
 
 ```bash
 pytest -q
+```
+
+### Ontology Vector Lookup Demo
+
+Run a semantic search over an ontology file:
+
+```bash
+python -m context_agent.tools.ontology_vector_lookup path/to/ontology.ttl "your query" -n 5
 ```
