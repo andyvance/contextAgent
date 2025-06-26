@@ -1,6 +1,15 @@
-"""TTL writer placeholder module."""
+"""TTL writer using rdflib."""
+
+from __future__ import annotations
+
+from typing import Iterable, Tuple
+
+from rdflib import Graph, URIRef
 
 
-def write_ttl(data: object, path: str) -> None:
-    """Placeholder function to write TTL ``data`` to ``path``."""
-    pass
+def write_ttl(triples: Iterable[Tuple[str, str, str]], path: str) -> None:
+    """Write ``triples`` to ``path`` in Turtle format."""
+    graph = Graph()
+    for s, p, o in triples:
+        graph.add((URIRef(s), URIRef(p), URIRef(o)))
+    graph.serialize(destination=path, format="ttl")
