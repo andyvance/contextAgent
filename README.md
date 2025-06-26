@@ -52,3 +52,19 @@ This approach works well for enumerated lists of controls or attack steps
 found in spreadsheets or JSON files.  Each row or object in the file is
 converted to text and compared with the ontology so that related concepts
 are linked in the resulting TTL.
+
+### Control Agent CLI
+
+The `context_agent.tools.control_agent` module exposes a command-line
+interface that ingests any number of documents and prints a spaCy token
+stream for inspection.  When ontology files and an output path are
+provided, TTL triples are also generated.
+
+```bash
+python -m context_agent.tools.control_agent \
+    path/to/catalog.json controls.xlsx other.pdf \
+    -o path/to/ontology.ttl -t output.ttl
+```
+
+The command prints the tokenized representation to standard output,
+which can help diagnose how the text will be fed into an LLM.
