@@ -1,4 +1,8 @@
 import os
+import pytest
+
+pytest.importorskip("rdflib")
+
 from context_agent.writers.csv_writer import write_csv
 from context_agent.writers.ttl_writer import write_ttl
 

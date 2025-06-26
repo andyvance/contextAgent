@@ -1,4 +1,10 @@
 import os
+import pytest
+
+pytest.importorskip("spacy")
+pytest.importorskip("numpy")
+pytest.importorskip("rdflib")
+
 from context_agent.tools.process_documents import process
 
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")

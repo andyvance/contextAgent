@@ -5,15 +5,17 @@ from __future__ import annotations
 import argparse
 from typing import Iterable, List, Tuple
 
-import numpy as np
-import spacy
-from rdflib import Graph, RDFS
 
 
 class OntologyVectorLookup:
     """Load ontology labels and enable semantic search."""
 
     def __init__(self, path: str):
+        from rdflib import Graph, RDFS  # optional dependencies
+        import spacy
+        import numpy as np
+
+        self._np = np
         self.graph = Graph()
         self.graph.parse(path, format="ttl")
         self.labels: List[str] = []
@@ -24,6 +26,7 @@ class OntologyVectorLookup:
         self.nlp = spacy.load("en_core_web_lg")
         # Precompute label vectors for efficiency using nlp.pipe
         docs = list(self.nlp.pipe(self.labels))
+        np = self._np
         self.label_vectors = np.stack([doc.vector for doc in docs]) if docs else np.empty((0, 0))
         self.label_norms = np.linalg.norm(self.label_vectors, axis=1) if docs else np.empty(0)
 
@@ -31,6 +34,7 @@ class OntologyVectorLookup:
         """Return top ``top_n`` labels most similar to ``query``."""
         if not self.labels:
             return []
+        np = self._np
         q_vec = self.nlp(query).vector
         q_norm = np.linalg.norm(q_vec)
         if q_norm == 0:

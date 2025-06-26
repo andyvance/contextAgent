@@ -38,11 +38,17 @@ python -m context_agent.tools.ontology_vector_lookup path/to/ontology.ttl "your 
 
 ### Simple Ingestion Example
 
-Process a set of documents using one or more ontologies and write the results to a TTL file:
+Process a set of documents using one or more ontologies and write the results to a TTL file.  The tool extracts text from the provided documents, performs a vector similarity search over the ontology labels, and emits TTL triples linking the best matches.  A similarity threshold can be supplied to tune matching aggressiveness:
 
 ```bash
 python -m context_agent.tools.process_documents \
     -o path/to/onto1.ttl -o path/to/onto2.ttl \
     -d docs/report.pdf -d controls.xlsx \
+    -t 0.7 \
     output.ttl
 ```
+
+This approach works well for enumerated lists of controls or attack steps
+found in spreadsheets or JSON files.  Each row or object in the file is
+converted to text and compared with the ontology so that related concepts
+are linked in the resulting TTL.
